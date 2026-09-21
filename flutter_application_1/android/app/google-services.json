@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1004629703821",
+    "project_id": "food-recommendation-ai",
+    "storage_bucket": "food-recommendation-ai.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1004629703821:android:4ff189d652a00b29eb36c4",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1004629703821-2rg431nb2pe9hkerrgitvli07unekrv5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_application_1",
+            "certificate_hash": "f660ae804d8b0b2642e9d9bd037b7dc59077e72a"
+          }
+        },
+        {
+          "client_id": "1004629703821-s26ndmkuj0ta5uq4quin0lraho6bfb5h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXPlVGZ-Y8eo8VUlv_8tMSEUM4jQTM_E0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1004629703821-s26ndmkuj0ta5uq4quin0lraho6bfb5h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
