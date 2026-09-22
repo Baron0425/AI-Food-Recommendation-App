@@ -295,7 +295,11 @@ class _MenuDetailScreenState extends State<MenuDetailScreen> {
           ? Image.network(
               menu.image!,
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => _heroPlaceholder(),
+              cacheWidth: (MediaQuery.of(context).size.width *
+                      MediaQuery.of(context).devicePixelRatio)
+                  .round(),
+              gaplessPlayback: true,
+              errorBuilder: (_, _, _) => _heroPlaceholder(),
             )
           : _heroPlaceholder(),
     );

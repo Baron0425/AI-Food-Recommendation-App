@@ -410,7 +410,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return ListView.separated(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       itemCount: menus.length,
-      separatorBuilder: (_, __) => const SizedBox(height: 10),
+      separatorBuilder: (_, _) => const SizedBox(height: 10),
       itemBuilder: (context, index) {
         final item = menus[index];
         return MenuCard(
@@ -456,15 +456,6 @@ class _HomeScreenState extends State<HomeScreen> {
           return;
         }
         if (index == 2) {
-          // ยังไม่มีหน้า "ประวัติ" จริง — เดิมกดแล้วไม่มีอะไรเกิดขึ้นเลย (แค่
-          // ไฮไลต์ปุ่มเฉยๆ) ทำให้ดูเหมือนแอพค้าง ใส่ SnackBar แจ้งไว้ก่อน
-          // ดีกว่าปล่อยให้กดแล้วเงียบแบบเดิม จนกว่าจะมีหน้าจริงมารองรับ
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('ฟีเจอร์ประวัติการค้นหา เร็วๆ นี้')),
-          );
-          return;
-        }
-        if (index == 3) {
           await _goToProfileOrLogin();
           return;
         }
@@ -473,7 +464,6 @@ class _HomeScreenState extends State<HomeScreen> {
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'หน้าหลัก'),
         BottomNavigationBarItem(icon: Icon(Icons.search), label: 'ค้นหา'),
-        BottomNavigationBarItem(icon: Icon(Icons.receipt_long), label: 'ประวัติ'),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'โปรไฟล์'),
       ],
     );

@@ -175,7 +175,7 @@ class _SearchScreenState extends State<SearchScreen> {
       key: const ValueKey('results'),
       padding: const EdgeInsets.symmetric(vertical: 4),
       itemCount: _results.length,
-      separatorBuilder: (_, __) => const Divider(height: 1, indent: 16, endIndent: 16),
+      separatorBuilder: (_, _) => const Divider(height: 1, indent: 16, endIndent: 16),
       itemBuilder: (context, index) {
         final r = _results[index];
         return InkWell(

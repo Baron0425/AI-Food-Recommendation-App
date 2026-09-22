@@ -17,7 +17,14 @@ import '../models/user.dart';
 ///     เช่น `http://192.168.1.42:8000` (หาด้วย `ipconfig` บน Windows)
 ///   - Production/deploy จริง  -> โดเมนจริง เช่น `https://api.yourapp.com`
 class ApiService {
-  ApiService({this.baseUrl = 'http://10.0.2.2:8000'});
+  ApiService({
+    String? baseUrl,
+  }) : baseUrl =
+          baseUrl ??
+          const String.fromEnvironment(
+            'API_BASE_URL',
+            defaultValue: 'http://10.0.2.2:8000',
+          );
 
   final String baseUrl;
 
@@ -144,9 +151,9 @@ class ApiService {
           uri,
           headers: {..._authHeaders(token), 'Content-Type': 'application/json'},
           body: jsonEncode({
-            if (fullname != null) 'fullname': fullname,
-            if (tel != null) 'tel': tel,
-            if (password != null) 'password': password,
+            'fullname': ?fullname,
+            'tel': ?tel,
+            'password': ?password,
           }),
         )
         .timeout(_timeout);

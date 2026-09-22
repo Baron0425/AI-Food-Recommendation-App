@@ -99,7 +99,28 @@ class MenuCard extends StatelessWidget {
                           ? Image.network(
                               item.image!,
                               fit: BoxFit.cover,
-                              errorBuilder: (_, __, ___) => _placeholderIcon(),
+                              // สำคัญ: บังคับ decode รูปให้เล็กลงตามขนาดที่แสดงจริง
+                              // (64x64 บนจอ) แทนที่จะ decode เต็มความละเอียดต้นฉบับ
+                              // ทุกครั้งที่การ์ดถูก build (เช่นตอน scroll ผ่าน
+                              // ListView) — รูปต้นฉบับมักใหญ่กว่านี้มาก การ decode
+                              // เต็มขนาดซ้ำๆ ในลิสต์คือสาเหตุหลักที่ทำให้ scroll
+                              // กระตุก/ไม่ลื่น ทั้งที่เครื่องแรงพอ เพราะงานตกไปที่
+                              // raster thread หนักเกินจำเป็น
+                              cacheWidth:
+                                  (64 * MediaQuery.of(context).devicePixelRatio)
+                                      .round(),
+                              cacheHeight:
+                                  (64 * MediaQuery.of(context).devicePixelRatio)
+                                      .round(),
+                              // กัน flicker/กระพริบตอน widget rebuild แต่ url เดิม
+                              gaplessPlayback: true,
+                              // แสดง placeholder นิ่งๆ ระหว่างโหลด แทนที่จะโผล่มา
+                              // กะทันหันหรือเห็นพื้นที่ว่างเปล่าแวบหนึ่ง
+                              loadingBuilder: (context, child, progress) {
+                                if (progress == null) return child;
+                                return _placeholderIcon();
+                              },
+                              errorBuilder: (_, _, _) => _placeholderIcon(),
                             )
                           : _placeholderIcon(),
                     ),

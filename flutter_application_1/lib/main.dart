@@ -5,6 +5,7 @@ import 'services/api_service.dart';
 import 'services/auth_service.dart';
 import 'theme/app_theme.dart';
 
+//flutter run --dart-define=API_BASE_URL=http://192.168.0.238:8000
 void main() {
   runApp(const RecipeApp());
 }

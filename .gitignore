@@ -20,6 +20,8 @@ env/
 *.db
 *.sqlite
 *.sqlite3
+backend/*.db-shm
+backend/*.db-wal
 
 # Logs
 *.log

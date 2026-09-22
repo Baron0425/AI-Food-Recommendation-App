@@ -82,6 +82,11 @@ def get_connection(db_path: str = DB_PATH) -> sqlite3.Connection:
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON;")
+    # NOTE: ตั้ง busy_timeout ไว้กันกรณีมีสอง connection ชนกันจริงๆ (เช่น
+    # request พร้อมกัน 2 คำขอ) ให้ connection ที่มาทีหลังรอแทนที่จะโยน
+    # "database is locked" ทันที — นี่ไม่ใช่ WAL และไม่แตะ journal_mode
+    # ของไฟล์เลย จึงไม่มีปัญหาเรื่อง shared-memory locking บนโฟลเดอร์ sync
+    conn.execute("PRAGMA busy_timeout = 10000;")
     return conn
 
 
